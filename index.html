@@ -1,0 +1,131 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Prefessional Profile
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;display=swap" rel="stylesheet"/>
+<style>
+   .hover-glow:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 123, 255, 0.5);
+   }
+   .dynamic-bg {
+    background: linear-gradient(135deg, #6b73ff, #000dff);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+   }
+   @keyframes gradientAnimation {
+    0% {
+     background-position: 0% 50%;
+    }
+    50% {
+     background-position: 100% 50%;
+    }
+    100% {
+     background-position: 0% 50%;
+    }
+   }
+   .hover-raise:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+   }
+  </style>
+   </head>
+ <body class="font-roboto bg-gray-100 flex items-center justify-center min-h-screen">
+<div class="hidden w-full mx-auto bg-white p-4 rounded-lg shadow-lg" id="invitation">
+       <main class="max-w-4xl mx-auto px-4 py-8">
+          <section class="bg-white shadow-md rounded-lg p-6 mb-8">
+            <div class="flex items-center space-x-6">
+                <img alt="Profile picture of a professional person" class="w-32 h-32 rounded-full" src="images/background.jpg"/>
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-800">John Doe</h1>
+                    <p class="text-gray-600">Software Engineer at Tech Company</p>
+                    <div class="flex space-x-4 mt-2">
+                        <a class="text-blue-600 hover:text-blue-800" href="https://www.linkedin.com/in/johndoe" target="_blank">
+                            <i class="fab fa-linkedin fa-2x"></i>
+                        </a>
+                        <a class="text-pink-600 hover:text-pink-800" href="https://www.instagram.com/johndoe" target="_blank">
+                            <i class="fab fa-instagram fa-2x"></i>
+                        </a>
+                        <a class="text-green-600 hover:text-green-800" href="https://wa.me/1234567890" target="_blank">
+                            <i class="fab fa-whatsapp fa-2x"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="bg-white shadow-md rounded-lg p-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Skills</h2>
+            <div class="flex flex-wrap gap-2">
+                <span class="bg-blue-100 text-blue-800 text-sm font-semibold px-4 py-2 rounded-full hover-raise transition duration-300">JavaScript</span>
+                <span class="bg-blue-100 text-blue-800 text-sm font-semibold px-4 py-2 rounded-full hover-raise transition duration-300">React</span>
+                <span class="bg-blue-100 text-blue-800 text-sm font-semibold px-4 py-2 rounded-full hover-raise transition duration-300">Node.js</span>
+                <span class="bg-blue-100 text-blue-800 text-sm font-semibold px-4 py-2 rounded-full hover-raise transition duration-300">CSS</span>
+                <span class="bg-blue-100 text-blue-800 text-sm font-semibold px-4 py-2 rounded-full hover-raise transition duration-300">HTML</span>
+                <span class="bg-blue-100 text-blue-800 text-sm font-semibold px-4 py-2 rounded-full hover-raise transition duration-300">Python</span>
+            </div>
+        </section>
+        <section class="bg-white shadow-md rounded-lg p-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Experience</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-gray-50 p-4 rounded-lg shadow hover-glow transition duration-300">
+                    <h3 class="text-xl font-semibold text-gray-800">Software Engineer</h3>
+                    <p class="text-gray-600">Tech Company</p>
+                    <p class="text-gray-500">Jan 2020 - Present</p>
+                    <p class="text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg shadow hover-glow transition duration-300">
+                    <h3 class="text-xl font-semibold text-gray-800">Junior Developer</h3>
+                    <p class="text-gray-600">Another Tech Company</p>
+                    <p class="text-gray-500">Jan 2018 - Dec 2019</p>
+                    <p class="text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+                </div>
+            </div>
+        </section>
+        <section class="bg-white shadow-md rounded-lg p-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Education</h2>
+            <div class="space-y-4">
+                <div class="bg-gray-50 p-4 rounded-lg shadow hover-glow transition duration-300">
+                    <h3 class="text-xl font-semibold text-gray-800">Bachelor of Science in Computer Science</h3>
+                    <p class="text-gray-600">University of Technology</p>
+                    <p class="text-gray-500">2014 - 2018</p>
+                </div>
+            </div>
+        </section>
+        <section class="bg-white shadow-md rounded-lg p-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-gray-50 p-4 rounded-lg shadow hover-glow transition duration-300">
+                    <img alt="Preview of Project One" class="w-full h-32 object-cover rounded-lg mb-4" src="https://placehold.co/300x200"/>
+                    <h3 class="text-xl font-semibold text-gray-800">Project One</h3>
+                    <p class="text-gray-600">Description of project one. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg shadow hover-glow transition duration-300">
+                    <img alt="Preview of Project Two" class="w-full h-32 object-cover rounded-lg mb-4" src="https://placehold.co/300x200"/>
+                    <h3 class="text-xl font-semibold text-gray-800">Project Two</h3>
+                    <p class="text-gray-600">Description of project two. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="dynamic-bg text-white py-4">
+        <div class="container mx-auto px-4 text-center">
+            © 2023 MyProfile. All rights reserved.
+        </div>
+    </footer>
+</div>
+  <button class="bg-blue-500 text-white px-4 py-2 rounded" id="openButton" onclick="openInvitation()">
+   Click here to open
+  </button>
+  <script>
+   function openInvitation() {
+            document.getElementById('invitation').classList.remove('hidden');
+            document.getElementById('openButton').classList.add('hidden');
+        }
+  </script>
+ </body>
+</html>
