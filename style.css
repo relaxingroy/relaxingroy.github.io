@@ -1,14 +1,18 @@
 body {
     margin: 0;
+    padding: 0;
     overflow: hidden;
     background-color: #70c5ce;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    touch-action: none; /* Mencegah scroll saat menyentuh game */
 }
 
 canvas {
-    border: 2px solid #000;
-    background-color: #fff;
+    display: block;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    max-width: 100%;
+    max-height: 100%;
 }
