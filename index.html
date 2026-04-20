@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>TETRIS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="crt-overlay"></div>
+  <div class="scanlines"></div>
+
+  <div id="app">
+
+    <header>
+      <h1>&#9646;&#9646; TETRIS &#9646;&#9646;</h1>
+    </header>
+
+    <div class="game-wrapper">
+
+      <!-- Left Panel -->
+      <aside class="panel panel-left">
+        <div class="stat-box">
+          <div class="stat-label">SCORE</div>
+          <div class="stat-value" id="score-display">000000</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">LINES</div>
+          <div class="stat-value" id="lines-display">000</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">LEVEL</div>
+          <div class="stat-value" id="level-display">01</div>
+        </div>
+
+        <div class="stat-box">
+          <div class="stat-label">HOLD</div>
+          <canvas id="hold-canvas" width="80" height="80"></canvas>
+        </div>
+      </aside>
+
+      <!-- Game Board -->
+      <div class="canvas-wrap">
+        <canvas id="game-canvas"></canvas>
+        <div id="overlay">
+          <div id="overlay-title">TETRIS</div>
+          <div id="overlay-sub"></div>
+          <button id="overlay-btn">[ START ]</button>
+        </div>
+      </div>
+
+      <!-- Right Panel -->
+      <aside class="panel panel-right">
+        <div class="stat-box">
+          <div class="stat-label">NEXT</div>
+          <canvas id="next-canvas" width="80" height="80"></canvas>
+        </div>
+
+        <div class="stat-box keys-guide">
+          <div class="stat-label">KEYS</div>
+          <div class="key-row"><kbd>← →</kbd> <span>move</span></div>
+          <div class="key-row"><kbd>↑</kbd> <span>rotate</span></div>
+          <div class="key-row"><kbd>↓</kbd> <span>fast drop</span></div>
+          <div class="key-row"><kbd>SPC</kbd> <span>hard drop</span></div>
+          <div class="key-row"><kbd>C</kbd> <span>hold</span></div>
+          <div class="key-row"><kbd>P</kbd> <span>pause</span></div>
+        </div>
+      </aside>
+
+    </div><!-- /.game-wrapper -->
+
+    <!-- Mobile Controls -->
+    <div id="mobile-controls">
+      <div class="ctrl-row">
+        <button class="ctrl-btn" id="btn-hold">HOLD</button>
+        <button class="ctrl-btn ctrl-rotate" id="btn-rotate">ROT</button>
+        <button class="ctrl-btn" id="btn-pause">PAUS</button>
+      </div>
+      <div class="ctrl-row">
+        <button class="ctrl-btn" id="btn-left">&#9664;</button>
+        <button class="ctrl-btn ctrl-down" id="btn-down">&#9660;</button>
+        <button class="ctrl-btn" id="btn-right">&#9654;</button>
+      </div>
+      <div class="ctrl-row">
+        <button class="ctrl-btn ctrl-drop" id="btn-drop">&#9660;&#9660; DROP</button>
+      </div>
+    </div>
+
+  </div><!-- /#app -->
+
+  <script src="game.js"></script>
+</body>
+</html>

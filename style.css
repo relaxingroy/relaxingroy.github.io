@@ -1,0 +1,291 @@
+/* ── RETRO CRT TETRIS ─────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+:root {
+  --green:      #39ff14;
+  --green-dim:  #1a7a06;
+  --green-dark: #0c3d02;
+  --bg:         #050a03;
+  --panel-bg:   #080f04;
+  --border:     #1f4d09;
+  --text:       #39ff14;
+  --text-dim:   #1c6e0a;
+  --glow:       0 0 8px #39ff14, 0 0 20px rgba(57,255,20,0.35);
+  --glow-sm:    0 0 6px rgba(57,255,20,0.6);
+  --font:       'Press Start 2P', monospace;
+}
+
+/* ── RESET & BASE ────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  overflow: hidden;
+}
+
+/* ── CRT EFFECTS ─────────────────────────────────────────────── */
+.scanlines {
+  position: fixed; inset: 0; z-index: 200;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 3px,
+    rgba(0,0,0,0.18) 3px,
+    rgba(0,0,0,0.18) 4px
+  );
+}
+
+.crt-overlay {
+  position: fixed; inset: 0; z-index: 201;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at center,
+      transparent 60%,
+      rgba(0,0,0,0.55) 100%);
+  animation: flicker 8s infinite;
+}
+
+@keyframes flicker {
+  0%,100%    { opacity: 1; }
+  92%        { opacity: 1; }
+  92.5%      { opacity: 0.85; }
+  93%        { opacity: 1; }
+  96%        { opacity: 1; }
+  96.3%      { opacity: 0.9; }
+  96.6%      { opacity: 1; }
+}
+
+/* ── LAYOUT ──────────────────────────────────────────────────── */
+#app {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  min-height: 100vh;
+  gap: 10px;
+  padding: 12px 8px;
+}
+
+header h1 {
+  font-size: clamp(10px, 2.8vw, 18px);
+  letter-spacing: 4px;
+  color: var(--green);
+  text-shadow: var(--glow);
+  animation: blink-glow 2.5s ease-in-out infinite;
+}
+
+@keyframes blink-glow {
+  0%,100% { text-shadow: var(--glow); }
+  50%     { text-shadow: 0 0 14px #39ff14, 0 0 40px rgba(57,255,20,0.5); }
+}
+
+.game-wrapper {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+/* ── PANELS ──────────────────────────────────────────────────── */
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100px;
+}
+
+.stat-box {
+  background: var(--panel-bg);
+  border: 1px solid var(--border);
+  padding: 8px 7px;
+  position: relative;
+}
+
+/* top-edge accent line */
+.stat-box::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 6px; right: 6px;
+  height: 1px;
+  background: var(--green-dim);
+  opacity: 0.5;
+}
+
+.stat-label {
+  font-size: 6px;
+  letter-spacing: 2px;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+
+.stat-value {
+  font-size: 13px;
+  color: var(--green);
+  text-shadow: var(--glow-sm);
+  word-break: break-all;
+  line-height: 1.5;
+}
+
+/* hold / next mini canvas */
+#hold-canvas,
+#next-canvas {
+  display: block;
+  margin: 0 auto;
+  image-rendering: pixelated;
+}
+
+/* keys guide */
+.keys-guide {
+  font-size: 6px;
+}
+
+.key-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 5px;
+  color: var(--text-dim);
+}
+
+.key-row:last-child { margin-bottom: 0; }
+
+kbd {
+  display: inline-block;
+  background: var(--green-dark);
+  border: 1px solid var(--green-dim);
+  padding: 1px 3px;
+  font-family: var(--font);
+  font-size: 5px;
+  color: var(--green);
+  white-space: nowrap;
+}
+
+/* ── CANVAS WRAP ─────────────────────────────────────────────── */
+.canvas-wrap {
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+  border: 2px solid var(--border);
+  box-shadow:
+    0 0 0 1px var(--green-dark),
+    inset 0 0 24px rgba(0,0,0,0.8),
+    0 0 30px rgba(57,255,20,0.08);
+}
+
+#game-canvas {
+  display: block;
+  image-rendering: pixelated;
+}
+
+/* ── OVERLAY ─────────────────────────────────────────────────── */
+#overlay {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 16px;
+  background: rgba(5,10,3,0.88);
+  transition: opacity 0.3s;
+}
+
+#overlay.hidden {
+  display: none;
+}
+
+#overlay-title {
+  font-size: clamp(14px, 3.5vw, 22px);
+  letter-spacing: 6px;
+  color: var(--green);
+  text-shadow: var(--glow);
+  animation: blink-glow 2.5s ease-in-out infinite;
+}
+
+#overlay-sub {
+  font-size: 7px;
+  color: var(--text-dim);
+  letter-spacing: 2px;
+  white-space: pre-line;
+  text-align: center;
+  line-height: 2;
+}
+
+#overlay-btn {
+  background: transparent;
+  border: 1px solid var(--green);
+  color: var(--green);
+  font-family: var(--font);
+  font-size: 8px;
+  letter-spacing: 2px;
+  padding: 10px 20px;
+  cursor: pointer;
+  text-shadow: var(--glow-sm);
+  transition: background 0.15s;
+  animation: cursor-blink 1s step-end infinite;
+}
+
+@keyframes cursor-blink {
+  0%,100% { border-color: var(--green); }
+  50%     { border-color: var(--green-dim); }
+}
+
+#overlay-btn:hover,
+#overlay-btn:active {
+  background: rgba(57,255,20,0.12);
+  box-shadow: var(--glow);
+}
+
+/* ── MOBILE CONTROLS ─────────────────────────────────────────── */
+#mobile-controls {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  width: 100%;
+  max-width: 340px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.ctrl-row {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.ctrl-btn {
+  width: 62px; height: 54px;
+  background: var(--panel-bg);
+  border: 1px solid var(--border);
+  color: var(--green);
+  font-family: var(--font);
+  font-size: 10px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition: background 0.08s, box-shadow 0.08s;
+  text-shadow: var(--glow-sm);
+}
+
+.ctrl-btn:active {
+  background: rgba(57,255,20,0.14);
+  box-shadow: var(--glow);
+}
+
+.ctrl-rotate { width: 80px; font-size: 12px; }
+.ctrl-down   { width: 80px; }
+.ctrl-drop   { width: 190px; letter-spacing: 2px; }
+
+/* show on touch / narrow screens */
+@media (pointer: coarse), (max-width: 560px) {
+  #mobile-controls { display: flex; }
+}
+
+/* ── RESPONSIVE TWEAKS ───────────────────────────────────────── */
+@media (max-width: 420px) {
+  .panel { width: 82px; }
+  .stat-value { font-size: 11px; }
+  kbd { font-size: 4px; }
+}
